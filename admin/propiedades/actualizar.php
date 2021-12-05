@@ -1,4 +1,12 @@
 <?php 
+    require '../../includes/funciones.php';
+
+    $auth = estaAutenticado();
+
+    if(!$auth){
+        header('Location: /');
+    }
+    
     //obtenemos el id de la propiedad a actualizar desde el url
     $id = $_GET['id'];
     //Validamos que sea un numero
@@ -134,8 +142,6 @@
         }
         
     }
-
-    require '../../includes/funciones.php';
 
     incluirTemplate('header');
 ?>
