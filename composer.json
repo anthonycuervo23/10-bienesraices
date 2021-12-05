@@ -1,0 +1,19 @@
+{
+    "name": "jeancuervo/10-bienesraices",
+    "description": "modificando proyecto original a POO",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "App\\": "./classes"
+        }
+    },
+    "authors": [
+        {
+            "name": "Jean Cuervo",
+            "email": "jcuervo2390@gmail.com"
+        }
+    ],
+    "require": {
+        "intervention/image": "^2.7"
+    }
+}
