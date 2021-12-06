@@ -17,20 +17,11 @@
         $id = filter_var($id, FILTER_VALIDATE_INT);
 
         if($id) {
-            //Eliminar el archivo
-            $query = "SELECT imagen FROM propiedades WHERE id = $id";
-            $resultado = mysqli_query($db, $query);
-            $propiedad = mysqli_fetch_assoc($resultado);
+            $propiedad = Propiedad::getByID($id);
 
-            unlink('../imagenes/' . $propiedad['imagen']);
+            $propiedad->eliminar();
 
-            //Eliminar la propiedad
-            $query = "DELETE FROM propiedades WHERE id = $id";
-            $resultado = mysqli_query($db, $query);
 
-            if($resultado) {
-                header('Location: /admin?resultado=3');
-            }
         }
     }
 
@@ -62,26 +53,23 @@
                 </tr>
             </thead>
 
-            <tbody> <!-- Mostrar los resultados -->
-
-                <?php foreach($propiedades as $propiedad) {?>
-
-                    <tr>
-                        <td><?php echo $propiedad->id; ?></td>
-                        <td><?php echo $propiedad->titulo; ?></td>
-                        <td> <img src="/imagenes/<?php echo $propiedad->imagen; ?>" class="imagen-tabla"></td>
-                        <td>$ <?php echo $propiedad->precio; ?></td>
-                        <td>
-                            <form method="POST" class="w-100">
-                                <input type="hidden" name="id" value="<?php echo $propiedad->id; ?>">
-                                <input type="submit" class="boton-rojo-block" value="Eliminar">
-                            </form>
-                            <a class="boton-amarillo-block" href="admin/propiedades/actualizar.php?id=<?php echo $propiedad['id'] ?>">Actualizar</a>
-                        </td>
-                    </tr>
-                    
-                <?php }?>
-            </tbody>
+            <?php foreach( $propiedades as $propiedad ){ ?>
+                <tr>
+                    <td><?php echo $propiedad->id; ?></td>
+                    <td><?php echo $propiedad->titulo; ?></td>
+                    <td> <img src="/imagenes/<?php echo $propiedad->imagen; ?>" class="imagen-tabla"> </td>
+                    <td>$ <?php echo $propiedad->precio; ?></td>
+                    <td>
+                        <form method="POST" class="w-100">
+                            <input type="hidden" name="id" value="<?php echo $propiedad->id; ?>">
+                            <input type="hidden" name="tipo" value="propiedad">
+                            <input type="submit" class="boton-rojo-block" value="Eliminar">
+                        </form>
+                        
+                        <a href="admin/propiedades/actualizar.php?id=<?php echo $propiedad->id; ?>" class="boton-amarillo-block">Actualizar</a>
+                    </td>
+                </tr>
+                <?php } ?>
         </table>
     </main>
 

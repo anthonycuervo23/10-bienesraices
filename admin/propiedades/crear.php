@@ -22,7 +22,7 @@
     if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
         //crear una nueva instancia
-        $propiedad = new Propiedad($_POST);
+        $propiedad = new Propiedad($_POST['propiedad']);
 
         /** SUBIDA DE ARCHIVOS */
 
@@ -31,8 +31,8 @@
 
         //Setear la imagen
         // Realiza un resize a la imagen con intervention
-        if($_FILES['imagen']['tmp_name']){
-            $image = Image::make($_FILES['imagen']['tmp_name'])->fit(800, 600);
+        if($_FILES['propiedad']['tmp_name']['imagen']){
+            $image = Image::make($_FILES['propiedad']['tmp_name']['imagen'])->fit(800, 600);
             $propiedad->setImagen($nombreImagen);
         }
 
@@ -50,12 +50,9 @@
             $image->save(CARPETA_IMAGENES . $nombreImagen);
 
             //guarda en la base de datos
-            $resultado = $propiedad->guardarDB();
+            $propiedad->guardarDB();
 
-            if($resultado){
-                // Redericcionar al usuario
-                header('Location: /admin?resultado=1');
-            } 
+
 
         }     
     }
