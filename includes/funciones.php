@@ -28,3 +28,32 @@ function sanitizar($html) : string {
     $sanitizar = htmlspecialchars($html);
     return $sanitizar;
 }
+
+// Validar tipo de contenido
+function validarTipoContenido($tipo) {
+    $tipos = ['vendedor', 'propiedad'];
+
+    return in_array($tipo, $tipos);
+}
+
+// muestra los mensajes
+function mostrarNotificacion($codigo) {
+    $mensaje = '';
+
+    switch ($codigo) {
+        case 1: 
+            $mensaje = 'Registro Creado Correctamente';
+            break;
+        case 2: 
+            $mensaje = 'Registro Actualizado Correctamente';
+            break;
+        case 3: 
+            $mensaje = 'Registro Creado Correctamente';
+            break;
+        
+        default:
+            $mensaje = false;
+            break;
+    }
+    return $mensaje;
+}
