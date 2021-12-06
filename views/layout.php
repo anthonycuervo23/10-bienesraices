@@ -38,7 +38,7 @@
                         <a href="/propiedades">Anuncios</a>
                         <a href="/blog">Blog</a>
                         <a href="/contacto">Contacto</a>
-                        <?php echo $auth ?  "<a href='/cerrar-sesion'>Cerrar sesion</a>" : ''  ?>
+                        <?php echo $auth ?  "<a href='/logout'>Cerrar sesion</a>" : ''  ?>
                     </nav>
                 </div>
             </div> <!-- barra -->
