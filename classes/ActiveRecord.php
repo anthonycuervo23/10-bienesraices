@@ -64,7 +64,6 @@ class ActiveRecord {
         $resultado = self::$db->query($query);
 
         if($resultado){
-            $this->borrarImagen();
             // Redericcionar al usuario
             header('Location: /admin?resultado=2');
         } 
@@ -76,6 +75,7 @@ class ActiveRecord {
         $resultado = self::$db->query($query);
 
         if($resultado){
+            $this->borrarImagen();
             // Redericcionar al usuario
             header('Location: /admin?resultado=3');
         } 
